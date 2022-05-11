@@ -1,9 +1,17 @@
-import 'package:appwrite/appwrite.dart';
+import 'package:findmyfamily/backend/appwrite_init.dart';
+import 'package:findmyfamily/screens/create_join_group.dart';
+import 'package:findmyfamily/screens/get_started_screen.dart';
+import 'package:findmyfamily/screens/group_created_screen.dart';
+import 'package:findmyfamily/screens/join_group.dart';
+import 'package:findmyfamily/screens/login_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  Client client = Client();
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => AppwriteInit(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -25,9 +33,115 @@ class MyApp extends StatelessWidget {
         // Notice that the counter didn't reset back to zero; the application
         // is not restarted.
         primarySwatch: Colors.blue,
+        fontFamily: 'Inter',
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      initialRoute: GetStartedScreen.routeName,
+      routes: {
+        GetStartedScreen.routeName : (context) => const GetStartedScreen(),
+        LoginScreen.routeName : ((context) => const LoginScreen()),
+        CreateOrJoinGroup.routeName :(context) => const CreateOrJoinGroup(),
+        GroupCreated.routeName :(context) => const GroupCreated(),
+        JoinGroup.routeName :(context) => JoinGroup(),
+      },
     );
+  }
+}
+
+class InitPage extends StatelessWidget {
+  const InitPage({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    TextEditingController _nameController = TextEditingController();
+    TextEditingController _emailController = TextEditingController();
+    TextEditingController _passwordController = TextEditingController();
+
+    return SafeArea(
+        child: Scaffold(
+      appBar: AppBar(
+        title: const Text("Appwrite Initialisation"),
+      ),
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.all(36.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(
+                "Enter your credentials to create an account",
+                style: Theme.of(context).textTheme.headline6,
+              ),
+              TextField(
+                controller: _nameController,
+                decoration: const InputDecoration(hintText: "Enter your name"),
+              ),
+              TextField(
+                controller: _emailController,
+                decoration:
+                    const InputDecoration(hintText: "Enter your email address"),
+              ),
+              TextField(
+                controller: _passwordController,
+                decoration:
+                    const InputDecoration(hintText: "Enter your password"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  AppwriteInit instance =
+                      Provider.of<AppwriteInit>(context, listen: false);
+                  instance.registerUser(_emailController.text,
+                      _passwordController.text, _nameController.text);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              const MyHomePage(title: "Post-Login")));
+                },
+                child: const Text("Register"),
+              ),
+              const Text(
+                "OR",
+                textAlign: TextAlign.center,
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  AppwriteInit instance =
+                      Provider.of<AppwriteInit>(context, listen: false);
+                  instance.oAuthSignIn('google');
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              const MyHomePage(title: "Post-Login")));
+                },
+                child: const Text("Sign in with Google"),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  AppwriteInit instance =
+                      Provider.of<AppwriteInit>(context, listen: false);
+                  var sessionsList = await instance.account.getSessions();
+                  print(sessionsList.total);
+                },
+                child: const Text("Get sessions"),
+              ),
+              ElevatedButton(
+                onPressed: () async {
+                  AppwriteInit instance =
+                      Provider.of<AppwriteInit>(context, listen: false);
+                  var deletedSession = await instance.account
+                      .deleteSession(sessionId: "62783170efa4db648cbe");
+                  var sessionsList = await instance.account.getSessions();
+                  print(sessionsList.total);
+                },
+                child: const Text("Delete session 5"),
+              ),
+            ],
+          ),
+        ),
+      ),
+    ));
   }
 }
 

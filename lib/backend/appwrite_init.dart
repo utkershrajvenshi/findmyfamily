@@ -14,9 +14,19 @@ class AppwriteInit extends ChangeNotifier{
     account = Account(client);
   }
 
-  void registerUser(String email, String password, String name) async{
+  void registerUser(String email, String password, String name){
     Future result = account.create(userId: 'unique()', email: email, password: password, name: name);
-    result.then((response) => print(response))
-    .catchError((onError) => print(onError));
+    result
+        .then((response) => print(response))
+        .catchError((onError) => print(onError));
+  }
+
+  void oAuthSignIn(String provider){
+    Future result = account.createOAuth2Session(
+      provider: provider,
+    );
+    result
+        .then((response) => print(response))
+        .catchError((onError) => print(onError));
   }
 }

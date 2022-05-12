@@ -21,11 +21,12 @@ class LoginScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const AppIcon(height: 54, width: 54),
+                const AppIcon(size: 54),
                 const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 40.0),
-                  child: CustomTitleText(titleText: "Login to continue.",)
-                ),
+                    padding: EdgeInsets.symmetric(vertical: 40.0),
+                    child: CustomTitleText(
+                      titleText: "Login to continue.",
+                    )),
                 const SizedBox(
                   height: 40.0,
                 ),

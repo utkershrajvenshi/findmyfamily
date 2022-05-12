@@ -3,6 +3,7 @@ import 'package:findmyfamily/components/custom_button.dart';
 import 'package:findmyfamily/components/custom_textfield.dart';
 import 'package:findmyfamily/components/custom_title_text.dart';
 import 'package:findmyfamily/constants.dart';
+import 'package:findmyfamily/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'base_template.dart';
 
@@ -16,17 +17,17 @@ class JoinGroup extends StatelessWidget {
     // ! Fixme
     // FIXME: perform validation check for correct room id here
     return BaseTemplate(
-      horizontalPadding: MediaQuery.of(context).size.width * 0.2,
-      childrenWidgets: [
-        const CustomTitleText(titleText: "Enter family group ID"),
-        CustomTextField(
-            controller: _groupIdController, hintText: "Enter group ID"),
-        CustomLabelledButton(
-            label: "Proceed",
-            onPressed: () {},
-            color: colorsMap[ProjectColors.proceedButtonColor]!
-        ),
-      ]
-    );
+        horizontalPadding: MediaQuery.of(context).size.width * 0.2,
+        childrenWidgets: [
+          const CustomTitleText(titleText: "Enter family group ID"),
+          CustomTextField(
+              controller: _groupIdController, hintText: "Enter group ID"),
+          CustomLabelledButton(
+              label: "Proceed",
+              onPressed: () {
+                Navigator.popAndPushNamed(context, HomeScreen.routeName);
+              },
+              color: colorsMap[ProjectColors.proceedButtonColor]!),
+        ]);
   }
 }

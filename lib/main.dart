@@ -1,17 +1,24 @@
 import 'package:findmyfamily/backend/appwrite_init.dart';
+import 'package:findmyfamily/backend/group_details.dart';
 import 'package:findmyfamily/screens/create_join_group.dart';
 import 'package:findmyfamily/screens/get_started_screen.dart';
 import 'package:findmyfamily/screens/group_created_screen.dart';
+import 'package:findmyfamily/screens/home_screen.dart';
 import 'package:findmyfamily/screens/join_group.dart';
 import 'package:findmyfamily/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-    create: (context) => AppwriteInit(),
-    child: const MyApp(),
-  ));
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => AppwriteInit()),
+        ChangeNotifierProvider(create: (context) => GroupDetails())
+      ],
+      child: const MyApp(),
+      )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -42,6 +49,7 @@ class MyApp extends StatelessWidget {
         CreateOrJoinGroup.routeName :(context) => const CreateOrJoinGroup(),
         GroupCreated.routeName :(context) => const GroupCreated(),
         JoinGroup.routeName :(context) => JoinGroup(),
+        HomeScreen.routeName :(context) => const HomeScreen(),
       },
     );
   }

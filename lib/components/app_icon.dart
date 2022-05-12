@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
 
 class AppIcon extends StatelessWidget {
-  final double width;
-  final double height;
-  const AppIcon({ Key? key, required this.height, required this.width }) : super(key: key);
+  final double size;
+  const AppIcon({Key? key, required this.size})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      height: height,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage("images/app_logo.png"),
-          fit: BoxFit.scaleDown
-        )
-      ),
+    return Image(
+      image: const AssetImage("images/app_logo.png"),
+      width: size,
+      height: size,
+      fit: BoxFit.scaleDown,
     );
   }
 }

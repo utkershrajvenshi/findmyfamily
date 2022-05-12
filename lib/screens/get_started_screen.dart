@@ -1,8 +1,7 @@
-import 'package:appwrite/models.dart';
 import 'package:findmyfamily/backend/appwrite_init.dart';
+import 'package:findmyfamily/backend/group_details.dart';
 import 'package:findmyfamily/components/app_icon.dart';
 import 'package:findmyfamily/components/custom_button.dart';
-import 'package:findmyfamily/main.dart';
 import 'package:findmyfamily/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:findmyfamily/constants.dart';
@@ -49,7 +48,7 @@ class _GetStartedScreenState extends State<GetStartedScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 // This is for showing the application logo on startup screen
-                const AppIcon(height: 120, width: 120),
+                const AppIcon(size: 120),
                 // This is for the label 'FindMyFamily'
                 Text("FindMyFamily",
                     style: Theme.of(context).textTheme.headline4?.copyWith(

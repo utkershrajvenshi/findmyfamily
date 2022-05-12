@@ -1,11 +1,14 @@
+import 'package:findmyfamily/backend/group_details.dart';
 import 'package:findmyfamily/backend/id_generator.dart';
 import 'package:findmyfamily/components/app_icon.dart';
 import 'package:findmyfamily/components/custom_button.dart';
 import 'package:findmyfamily/components/custom_textfield.dart';
 import 'package:findmyfamily/components/custom_title_text.dart';
 import 'package:findmyfamily/constants.dart';
+import 'package:findmyfamily/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
 class GroupCreated extends StatefulWidget {
   static String routeName = '/group-created';
@@ -38,10 +41,12 @@ class _GroupCreatedState extends State<GroupCreated> {
           child: Center(
             child: Column(
               children: [
-                const AppIcon(height: 54, width: 54),
+                const AppIcon(size: 54),
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 40.0),
-                  child: CustomTitleText(titleText: "Your family group ID is ready.",),
+                  child: CustomTitleText(
+                    titleText: "Your family group ID is ready.",
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 16.0),
@@ -79,10 +84,17 @@ class _GroupCreatedState extends State<GroupCreated> {
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0),
-                  child: CustomLabelledButton(
-                    label: "Proceed",
-                    onPressed: () {},
-                    color: colorsMap[ProjectColors.proceedButtonColor]!,
+                  child: Consumer<GroupDetails>(
+                    builder: (context, value, child) => CustomLabelledButton(
+                      label: "Proceed",
+                      onPressed: () {
+                        value.setGroupName(_groupNameController.text);
+                        value.setGroupID(groupID);
+                        Navigator.popAndPushNamed(
+                            context, HomeScreen.routeName);
+                      },
+                      color: colorsMap[ProjectColors.proceedButtonColor]!,
+                    ),
                   ),
                 ),
               ],

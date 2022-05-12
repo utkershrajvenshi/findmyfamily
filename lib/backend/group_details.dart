@@ -10,15 +10,18 @@ class GroupDetails extends ChangeNotifier {
   // Setter functions for GroupDetails fields
   void setGroupName(String groupName) {
     _groupName = groupName;
+    notifyListeners();
   }
 
   void setGroupID(String groupID) {
     _groupID = groupID;
     _expirationOfID = DateTime.now().add(const Duration(days: 2));
+    notifyListeners();
   }
 
   void addGroupMembers({required String userName}) {
     _members?.add(userName);
+    notifyListeners();
   }
 
   // Getter functions for GroupDetails parameters

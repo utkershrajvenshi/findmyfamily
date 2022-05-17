@@ -18,7 +18,7 @@ class BottomCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            "$members members in the group",
+            members!=1 ? "$members members in the group" : "$members member in the group",
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: Colors.black, fontWeight: FontWeight.w600),
           ),
           const Icon(Icons.keyboard_arrow_right_rounded, color: Colors.black,)

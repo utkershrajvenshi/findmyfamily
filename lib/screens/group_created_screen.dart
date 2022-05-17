@@ -1,3 +1,5 @@
+import 'package:appwrite/models.dart';
+import 'package:findmyfamily/backend/appwrite_init.dart';
 import 'package:findmyfamily/backend/group_details.dart';
 import 'package:findmyfamily/backend/id_generator.dart';
 import 'package:findmyfamily/components/app_icon.dart';
@@ -87,9 +89,45 @@ class _GroupCreatedState extends State<GroupCreated> {
                   child: Consumer<GroupDetails>(
                     builder: (context, value, child) => CustomLabelledButton(
                       label: "Proceed",
-                      onPressed: () {
+                      onPressed: () async {
                         value.setGroupName(_groupNameController.text);
                         value.setGroupID(groupID);
+                        // Adding present user to the list of members in the GroupDetails object
+                        String userID = "*";
+                        AppwriteInit instance =
+                            Provider.of<AppwriteInit>(context, listen: false);
+                        try {
+                          User user = await instance.account.get();
+
+                          userID = user.$id;
+                          print("User with id ${user.$id}");
+                          value.addGroupMembers(userID: user.$id);
+                          print("GroupDetails now: ${value.toMap()}");
+                        } catch (e) {
+                          print("Exception occurred: ${e}");
+                        }
+                        // Creating a document in 'groups' collection
+                        try {
+                          var createdDoc = await instance.database
+                              .createDocument(
+                                  collectionId: getGroupsCollectionID(),
+                                  documentId: "unique()",
+                                  data: value.toMap(),
+                                  read: ["role:all"],
+                                  write: ["user:$userID"]);
+
+                          // Also adding the groupID in the db's user.groups section
+                          String createdGroupID = createdDoc.$id;
+                          Document updatedDoc = await instance
+                              .updateGroupOfUserDocument(
+                                  userID, {"group": createdGroupID});
+
+                          print("Created document ${createdDoc.toMap()}");
+                          print(
+                              "Updated user document of $userID. Updated document: $updatedDoc");
+                        } catch (e) {
+                          print("Error while creating document: $e");
+                        }
                         Navigator.popAndPushNamed(
                             context, HomeScreen.routeName);
                       },

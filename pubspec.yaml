@@ -44,6 +44,10 @@ dependencies:
   # Dependency for geolocator package
   # Used to access the location of users
   geolocator: ^8.2.0
+  # For showing maps
+  google_maps_flutter: ^2.1.5
+  # For showing splash screen
+  # splashscreen: ^1.3.5
 
 dev_dependencies:
   flutter_test:

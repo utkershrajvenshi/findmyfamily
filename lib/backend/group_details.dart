@@ -5,7 +5,23 @@ class GroupDetails extends ChangeNotifier {
   late String _groupName;
   late String _groupID;
   late DateTime _expirationOfID;
-  List? _members;
+  List<String> _members = [];
+
+  GroupDetails() {
+    _members = [];
+  }
+
+  void setFromJson(Map<dynamic, dynamic> json) {
+    String groupName = json["groupName"];
+    String groupId = json["groupID"];
+    DateTime expiry = DateTime.parse(json["expirationDate"]);
+    List<String> members = List<String>.from(json["members"]);
+
+    _groupName = groupName;
+    _groupID = groupId;
+    _expirationOfID = expiry;
+    _members = members;
+  }
 
   // Setter functions for GroupDetails fields
   void setGroupName(String groupName) {
@@ -19,8 +35,8 @@ class GroupDetails extends ChangeNotifier {
     notifyListeners();
   }
 
-  void addGroupMembers({required String userName}) {
-    _members?.add(userName);
+  void addGroupMembers({required String userID}) {
+    _members.add(userID);
     notifyListeners();
   }
 
@@ -36,5 +52,14 @@ class GroupDetails extends ChangeNotifier {
   }
 
   List? getGroupMembers() => _members;
-  int? getNumberOfMembers() => _members?.length;
+  int getNumberOfMembers() => _members.length;
+
+  Map<String, dynamic> toMap() {
+    return {
+      "groupName": _groupName,
+      "groupID": _groupID,
+      "expirationDate": _expirationOfID.toString(),
+      "members": _members
+    };
+  }
 }

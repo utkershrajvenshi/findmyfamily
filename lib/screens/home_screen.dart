@@ -4,6 +4,7 @@ import 'package:findmyfamily/components/map_bottom_card.dart';
 import 'package:findmyfamily/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class HomeScreen extends StatefulWidget {
   static String routeName = "/home-screen";
@@ -39,16 +40,15 @@ class _HomeScreenState extends State<HomeScreen> {
           body: Stack(
             children: [
               // * Container for storing MapView
-              Expanded(
-                child: Container(
-                  //width: MediaQuery.of(context).size.width,
-                  //height: MediaQuery.of(context).size.height - 50,
-                  color: Colors.grey.shade200,
-                ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                color: Colors.grey.shade200,
+                //child: GoogleMap(initialCameraPosition: ),
               ),
               Align(
                 alignment: Alignment.bottomCenter,
-                child: BottomCard(members: myGroup.getNumberOfMembers() ?? 0),
+                child: BottomCard(members: myGroup.getNumberOfMembers()),
               )
             ],
           ),

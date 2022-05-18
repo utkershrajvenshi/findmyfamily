@@ -26,7 +26,6 @@ class _GroupCreatedState extends State<GroupCreated> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     groupID = IDGenerator.generateRoomID();
   }

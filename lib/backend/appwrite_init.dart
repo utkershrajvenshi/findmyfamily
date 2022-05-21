@@ -27,14 +27,6 @@ class AppwriteInit extends ChangeNotifier {
     storage = Storage(client);
   }
 
-  void registerUser(String email, String password, String name) {
-    Future result = account.create(
-        userId: 'unique()', email: email, password: password, name: name);
-    result
-        .then((response) => print(response))
-        .catchError((onError) => print(onError));
-  }
-
   Future<void> oAuthSignIn(String provider) async {
     try {
       var result = await account.createOAuth2Session(

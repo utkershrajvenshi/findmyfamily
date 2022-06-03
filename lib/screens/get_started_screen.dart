@@ -1,10 +1,8 @@
-import 'package:findmyfamily/backend/appwrite_init.dart';
 import 'package:findmyfamily/components/app_icon.dart';
 import 'package:findmyfamily/components/custom_button.dart';
 import 'package:findmyfamily/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:findmyfamily/constants.dart';
-import 'package:provider/provider.dart';
 
 class GetStartedScreen extends StatelessWidget {
   static String routeName = '/get-started';

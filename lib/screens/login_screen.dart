@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:appwrite/models.dart';
 import 'package:findmyfamily/backend/appwrite_init.dart';
 import 'package:findmyfamily/components/custom_button.dart';

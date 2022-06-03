@@ -16,30 +16,30 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseTemplate(childrenWidgets: [
-      const CustomTitleText(titleText: "Login to continue."),
-      CustomLabelledButton(
-        label: "Sign in with Google",
-        onPressed: () async {
-          AppwriteInit instance =
-              Provider.of<AppwriteInit>(context, listen: false);
-          await instance.oAuthSignIn('google');
-          
-          User user = await instance.account.get();
+	return BaseTemplate(childrenWidgets: [
+	  const CustomTitleText(titleText: "Login to continue."),
+	  CustomLabelledButton(
+		label: "Sign in with Google",
+		onPressed: () async {
+		  AppwriteInit instance =
+			  Provider.of<AppwriteInit>(context, listen: false);
+		  await instance.oAuthSignIn('google');
+		  
+		  User user = await instance.account.get();
 
-          if (await instance.checkIfUserIsInAGroup(user).then((value) => value!="NA")) {
-            // Check signifies that the user has a group allocated to it, i.e onboarding flow was normal
-            Navigator.popAndPushNamed(context, HomeScreen.routeName);
-          } else {
-            // Signifies that the user.group property still has value "NA" associated with it.
-            // Means its a new user
-            // Thus creating a user document before proceeding to the next screen
-            instance.createUserDocument(user);
-            Navigator.popAndPushNamed(context, CreateOrJoinGroup.routeName);
-          }
-        },
-        color: colorsMap[ProjectColors.newGroupColor]!,
-      ),
-    ]);
+		  if (await instance.checkIfUserIsInAGroup(user).then((value) => value!="NA")) {
+			// Check signifies that the user has a group allocated to it, i.e onboarding flow was normal
+			Navigator.popAndPushNamed(context, HomeScreen.routeName);
+		  } else {
+			// Signifies that the user.group property still has value "NA" associated with it.
+			// Means its a new user
+			// Thus creating a user document before proceeding to the next screen
+			instance.createUserDocument(user);
+			Navigator.popAndPushNamed(context, CreateOrJoinGroup.routeName);
+		  }
+		},
+		color: colorsMap[ProjectColors.newGroupColor]!,
+	  ),
+	]);
   }
 }

@@ -1,9 +1,10 @@
 import { Client } from "appwrite";
+import Constants from 'expo-constants';
 
 const client = new Client();
 
 client
   .setEndpoint('https://cloud.appwrite.io/v1')
-  .setProject(process.env.PROJECT_ID ?? 'SAMPLE_ID');
+  .setProject(Constants.expoConfig?.extra?.appwriteAppId as string ?? 'SAMPLE_ID');
 
 export default client

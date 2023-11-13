@@ -1,12 +1,13 @@
 {
   "expo": {
-    "name": "findmyfamily",
+    "name": "FindMyFamily",
     "slug": "findmyfamily",
-    "version": "1.0.0",
+    "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "myapp",
-    "userInterfaceStyle": "automatic",
+    "platforms": ["web", "android"],
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",

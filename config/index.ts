@@ -5,6 +5,6 @@ const client = new Client();
 
 client
   .setEndpoint('https://cloud.appwrite.io/v1')
-  .setProject(Constants.expoConfig?.extra?.appwriteAppId as string ?? 'SAMPLE_ID');
+  .setProject(Constants.expoConfig?.extra?.appwriteAppId as string);
 
 export default client

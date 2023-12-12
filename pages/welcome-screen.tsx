@@ -1,6 +1,9 @@
 import React from 'react';
-import { Text, View, Image, TouchableOpacity } from 'react-native';
+import { Text, View, Image, Pressable } from 'react-native';
 import { WelcomeScreenStyles } from '../styles/welcome-screen.styles';
+import { Link } from 'expo-router';
+
+const sampleOnPress = () => console.log('Navigate to next screen')
 
 // TODO: Add Link to auth screen on clicking Get started
 
@@ -15,9 +18,11 @@ function WelcomeScreen() {
       {/* Splash Screen Text */}
       <Text style={WelcomeScreenStyles.title}>FindMyFamily</Text>
       {/* Get Started Button */}
-      <TouchableOpacity style={WelcomeScreenStyles.button} onPress={() => console.log('Navigate to next screen')}>
-        <Text style={WelcomeScreenStyles.buttonText}>Get started</Text>
-      </TouchableOpacity>
+      <Link asChild href="/login">
+        <Pressable style={WelcomeScreenStyles.button} onPress={sampleOnPress}>
+          <Text style={WelcomeScreenStyles.buttonText}>Get started</Text>
+        </Pressable>
+      </Link>
     </View>
   );
 }

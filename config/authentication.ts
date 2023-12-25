@@ -3,21 +3,29 @@ import client from "./index";
 
 const account = new Account(client)
 
+type ILoginSignUp = {email: string, password: string}
+
 class UserAuthentication {
-  public static signUp(email: string, password: string) {
+  public static signUp({ email, password }: ILoginSignUp, callbackFn?: Function, errorHandler?: Function) {
     const promise = account.create(ID.unique(), email, password);
     
     promise.then(
-      (response) => console.log('Sign up successful: ', response),
-      (error) => console.log('Error signing up', error)
+      (response) => {
+        console.log('Sign up successful: ', response)
+        if (callbackFn) callbackFn()
+      },
+      (error) => errorHandler?.(error)
     );
   }
 
-  public static login(email: string, password: string) {
-    const promise = account.createEmailSession(email, password);
+  public static login({ email, password }: ILoginSignUp, callbackFn?: Function, errorHandler?: Function) {
+    const promise = account.createEmailSession(email, password)
     promise.then(
-      (response) => console.log('Success', response),
-      (error) => console.log('Error logging in', error)
+      (response) => {
+        console.log('Success', response)
+        if (callbackFn) callbackFn()
+      },
+      (error) => errorHandler?.(error)
     );
   }
 
@@ -25,7 +33,7 @@ class UserAuthentication {
     const promise = account.deleteSession('current')
     promise.then(
       (response) => console.log('Successfully logged out. ', response),
-      (error) => console.log('Error while logging out ', error)
+      (error) => alert(error.message)
     )
   }
 }

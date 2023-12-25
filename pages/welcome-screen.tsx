@@ -5,8 +5,6 @@ import { Link } from 'expo-router';
 
 const sampleOnPress = () => console.log('Navigate to next screen')
 
-// TODO: Add Link to auth screen on clicking Get started
-
 function WelcomeScreen() {
   return (
     <View style={WelcomeScreenStyles.container}>

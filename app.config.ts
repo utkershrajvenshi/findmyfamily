@@ -8,4 +8,5 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   extra: {
     appwriteAppId: '653fc43cde4ebc14c2cf'
   },
+  plugins: ["expo-router"]
 })

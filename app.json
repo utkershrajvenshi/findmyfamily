@@ -4,6 +4,7 @@
     "slug": "findmyfamily",
     "version": "0.0.1",
     "orientation": "portrait",
+    "scheme": "findmyfamilyapp",
     "icon": "./assets/icon.png",
     "platforms": ["web", "android"],
     "userInterfaceStyle": "light",

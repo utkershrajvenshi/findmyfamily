@@ -1,11 +1,8 @@
+import { ActivityTypes } from "../constants"
+
 const HERO_TITLE_COLOR = '#AD6FA7'
 
-enum availableActivityTypes {
-  getStarted,
-  continue
-}
-
-const getButtonColorways = (activityType: keyof typeof availableActivityTypes) => {
+const getButtonColorways = (activityType: ActivityTypes) => {
   switch (activityType) {
     case 'getStarted':
     case 'continue': {
@@ -21,3 +18,5 @@ export {
   HERO_TITLE_COLOR,
   getButtonColorways
 }
+
+// TODO: Prefer to ask for a default value in a switch-case statement

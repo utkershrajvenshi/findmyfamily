@@ -19,16 +19,6 @@ const WelcomeScreenStyles = StyleSheet.create({
     color: HERO_TITLE_COLOR, // Adjust the color to match your design
     marginBottom: 48, // Space between title and button
   },
-  button: {
-    backgroundColor: getButtonColorways('getStarted').background, // Button background color
-    padding: 16,
-    borderRadius: 25, // Adjust for rounded corners
-  },
-  buttonText: {
-    color: getButtonColorways('getStarted').textColor,
-    fontSize: 20,
-    fontWeight: '600'
-  },
 });
 
 export { WelcomeScreenStyles }

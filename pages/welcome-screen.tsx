@@ -1,6 +1,7 @@
 import React from 'react';
-import { Text, View, Image, Pressable } from 'react-native';
+import { Text, View, Image } from 'react-native';
 import { WelcomeScreenStyles } from '../styles/welcome-screen.styles';
+import { Button } from '../components/Button';
 import { Link } from 'expo-router';
 
 const sampleOnPress = () => console.log('Navigate to next screen')
@@ -17,9 +18,7 @@ function WelcomeScreen() {
       <Text style={WelcomeScreenStyles.title}>FindMyFamily</Text>
       {/* Get Started Button */}
       <Link asChild href="/login">
-        <Pressable style={WelcomeScreenStyles.button} onPress={sampleOnPress}>
-          <Text style={WelcomeScreenStyles.buttonText}>Get started</Text>
-        </Pressable>
+        <Button onClick={sampleOnPress} variant="getStarted" />
       </Link>
     </View>
   );

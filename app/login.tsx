@@ -16,7 +16,7 @@ export default function Login() {
       UserAuthentication.login(
         {email, password},
         () => {
-          router.replace('/create-screen')
+          router.replace('/create-or-join-group')
         },
         (error: unknown) => {
           alert((error as Error).message)  
@@ -26,8 +26,9 @@ export default function Login() {
   }
 
   return (
-    <><View>
-      <RadialGradient x="15%" y="0%" rx="100%" ry="100%" colorList={colorList} />
+    <>
+      <View>
+        <RadialGradient x="15%" y="0%" rx="100%" ry="100%" colorList={colorList} />
       </View>
       <View style={styles.container}>
         <Image
@@ -54,6 +55,6 @@ export default function Login() {
           <Text style={styles.buttonText}>{stringMappings.continue}</Text>
         </Pressable>
       </View>
-      </>
+    </>
   );
 }

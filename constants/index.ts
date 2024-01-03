@@ -4,7 +4,10 @@ enum availableActivityTypes {
   login,
   email,
   password,
-  loginToContinue
+  loginToContinue,
+  createOrJoinAFamilyGroup,
+  createAGroup,
+  joinAGroup
 }
 
 type ActivityTypes = keyof typeof availableActivityTypes
@@ -15,7 +18,10 @@ const stringMappings: Record<ActivityTypes, string> = {
   'login': 'Login',
   email: 'Email',
   password: 'Password',
-  loginToContinue: 'Login to continue:'
+  loginToContinue: 'Login to continue:',
+  createOrJoinAFamilyGroup: 'Create or Join a family group',
+  createAGroup: 'Create a group',
+  joinAGroup: 'Join a group'
 }
 
 export { stringMappings }

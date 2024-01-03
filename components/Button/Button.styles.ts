@@ -8,6 +8,7 @@ const ButtonStyles = (variant: ActivityTypes) => {
     button: {
       backgroundColor: buttonColorways?.background, // Button background color
       padding: 16,
+      alignItems: 'center',
       borderRadius: 25, // Adjust for rounded corners
     },
     buttonText: {

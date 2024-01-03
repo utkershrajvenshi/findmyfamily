@@ -11,6 +11,18 @@ const getButtonColorways = (activityType: ActivityTypes) => {
         textColor: '#FFFFFF'
       }
     }
+    case 'createAGroup': {
+      return {
+        background: '#1A49EF',
+        textColor: '#FFFFFF'
+      }
+    }
+    case 'joinAGroup': {
+      return {
+        background: '#301580',
+        textColor: '#FFFFFF'
+      }
+    }
   }
 }
 

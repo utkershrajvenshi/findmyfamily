@@ -2,16 +2,11 @@ import { StyleSheet } from "react-native";
 
 const createOrJoinGroupStyles = StyleSheet.create({
   container: {
-    position: 'absolute',
     width: '100%',
     height: '100%',
-    zIndex: 1,
-    flex: 1,
+    display: 'flex',
     justifyContent: 'space-evenly',
     alignItems: 'center',
-    backgroundColor: 'transparent', // use a radial background
-    paddingHorizontal: 10,
-    paddingVertical: 40
   },
   logoContainer: {
     width: 54, // Set the width as needed

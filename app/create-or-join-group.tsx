@@ -19,7 +19,7 @@ export default function CreateOrJoinGroup() {
         {stringMappings.createOrJoinAFamilyGroup}
       </Text>
       <View style={styles.buttonGroup}>
-        <Button onClick={sampleOnPressCreate} variant="createAGroup" href="/create-group" />
+        <Button onClick={sampleOnPressCreate} variant="createAGroup" href="/room-created" />
         <Button onClick={sampleOnPressJoin} variant="joinAGroup" href="/join-group" />
       </View>
     </ImageBackground>

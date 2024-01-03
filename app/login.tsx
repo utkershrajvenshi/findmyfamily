@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { RadialGradient } from 'react-native-gradients';
 import { styles, colorList } from '../styles/login.styles';
-import { View, TextInput, Text, Pressable, Image } from 'react-native';
+import { View, Text, Pressable, Image } from 'react-native';
 import { UserAuthentication } from '../config/authentication';
 import { useRouter } from 'expo-router/src/hooks';
 import { stringMappings } from '../constants';
+import { CustomTextInput } from '../components/CustomTextInput';
 
 export default function Login() {
   const [email, setEmail] = useState<string>()
@@ -35,18 +36,14 @@ export default function Login() {
           source={require('../assets/app-logo.png')} // Replace with your logo image file
           style={styles.logoContainer} />
         <Text style={styles.title}>{stringMappings.loginToContinue}</Text>
-        <TextInput
-          style={styles.input}
+        <CustomTextInput
           placeholder={stringMappings.email}
-          placeholderTextColor="#939393"
           keyboardType="email-address"
           value={email}
           onChangeText={setEmail}
           autoCapitalize="none" />
-        <TextInput
-          style={styles.input}
+        <CustomTextInput
           placeholder={stringMappings.password}
-          placeholderTextColor="#939393"
           value={password}
           onChangeText={setPassword}
           secureTextEntry

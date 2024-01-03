@@ -23,6 +23,12 @@ const getButtonColorways = (activityType: ActivityTypes) => {
         textColor: '#FFFFFF'
       }
     }
+    case 'proceed': {
+      return {
+        background: '#441940',
+        textColor: '#FFFFFF'
+      }
+    }
   }
 }
 
